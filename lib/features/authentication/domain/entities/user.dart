@@ -6,7 +6,7 @@ class User extends Equatable{
   final String name;
   final String avatar;
 
-  User({
+  const User({
     required this.id,
     required this.createdAt,
     required this.name,
