@@ -1,4 +1,5 @@
-part of 'auth_bloc.dart';
+part of 'auth_cubit.dart';
+
 
 abstract class AuthState extends Equatable {
   const AuthState();
@@ -34,3 +35,4 @@ class AuthErrorState extends AuthState {
   @override
   List<String> get props => [errorMessage];
 }
+
