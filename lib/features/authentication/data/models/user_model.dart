@@ -21,13 +21,13 @@ class UserModel extends User {
           avatar: map['avatar'] as String,
         );
 
-  factory UserModel.fromsth(Map<String, dynamic> sth) {
-    return UserModel(
-        id: sth['id'],
-        createdAt: sth['createdAt'],
-        name: sth['name'],
-        avatar: sth['avatar']);
-  }
+  // factory UserModel.fromsth(Map<String, dynamic> sth) {
+  //   return UserModel(
+  //       id: sth['id'],
+  //       createdAt: sth['createdAt'],
+  //       name: sth['name'],
+  //       avatar: sth['avatar']);
+  // }
 
   const UserModel.empty()
       : this(
