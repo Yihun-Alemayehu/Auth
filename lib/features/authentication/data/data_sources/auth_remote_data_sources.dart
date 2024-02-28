@@ -39,6 +39,9 @@ class AuthenticationRemoteDataSourceImpl
             'avatar': avatar,
           },
         ),
+        headers: {
+          'Content-Type': 'application/json', 
+        }
       );
       if (response.statusCode != 200 && response.statusCode != 201) {
         throw ApiFailure(
@@ -54,16 +57,19 @@ class AuthenticationRemoteDataSourceImpl
   @override
   Future<List<UserModel>> getUsers() async {
     try {
-      final response = await _client.get(Uri.parse('$kBaseUrl/users'));
-      final responseResult =
-          List<Map<String, dynamic>>.from(jsonDecode(response.body))
-              .map((userData) => UserModel.fromMap(userData))
-              .toList();
-      if (response.statusCode != 200) {
+      final response = await _client
+          .get(Uri.https('65dc4db7e7edadead7eb8d43.mockapi.io', '/users'));
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final responseResult = List<Map<String, dynamic>>.from(
+                jsonDecode(response.body) as List)
+            .map((userData) => UserModel.fromMap(userData))
+            .toList();
+        return responseResult;
+      } else {
         throw ApiFailure(
             message: response.body, statusCode: response.statusCode);
       }
-      return responseResult;
     } on ApiFailure {
       rethrow;
     } catch (e) {
